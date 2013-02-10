@@ -1,4 +1,6 @@
 # Setup deck
+require 'rubygems'
+require 'pry'
 
 value = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
 suit = ["Hearts", "Clubs", "Diamonds", "Spades"]
@@ -57,10 +59,11 @@ while mytotal < 21
 	if hit_or_stay == "1"
 		puts "Have a card!"
 		puts ""
-		mycards << new_card
-		puts "It is #{mycards[2]}"
+		mycards << deck.pop
+		cardcount = mycards.length-1
+		puts "It is #{mycards[cardcount]}"
 		puts ""
-		card_valuer(mycards)
+		mytotal = card_valuer(mycards)
 		puts "Your total is now " + mytotal.to_s
 		puts ""
 
