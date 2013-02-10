@@ -6,7 +6,7 @@ suit = ["Hearts", "Clubs", "Diamonds", "Spades"]
 deck = value.product(suit)
 deck.shuffle!
 
-# Setup card valuer
+# Setup card valuer - Struggled with this
 
 def card_valuer(cards)
 	array = cards.map{|x| x[0]}
@@ -48,51 +48,53 @@ puts ""
 
 # Hit or Stay?
 
-puts "Would you like to 1) Hit or 2) Stay?"
-puts ""
+while mytotal < 21
+	puts "Would you like to 1) Hit or 2) Stay?"
+	puts ""
+	hit_or_stay = gets.chomp
+	puts ""
 
-hit_or_stay = gets.chomp
-puts ""
-
-if hit_or_stay == "1"
-	while hit_or_stay == "1"
+	if hit_or_stay == "1"
 		puts "Have a card!"
 		puts ""
-		mycards << deck.pop
+		mycards << new_card
 		puts "It is #{mycards[2]}"
 		puts ""
 		card_valuer(mycards)
-		if mytotal > 21
-			puts "You bust :("
-			next
+		puts "Your total is now " + mytotal.to_s
+		puts ""
+
+	elsif hit_or_stay == "2"
+		puts "Ok, you have " + mytotal.to_s + " let's see what the dealer has."
+		puts ""
+		puts "The dealer has " + dealtotal.to_s + "."
+		puts ""
+
+		if mytotal > dealtotal && mytotal <= 21
+			puts "You win :)"
+			puts ""
+			exit
+		elsif mytotal == dealtotal
+			puts "It's a draw :|"
+			puts ""
+			exit
+		else
+			puts "The dealer wins :("
+			puts ""
+			exit
 		end
-		puts "Would you like to 1) Hit or 2) Stay?"
-		puts ""
-		hit_or_stay = gets.chomp
-		puts ""
-	end
-
-elsif hit_or_stay == "2"
-	puts "Ok, you have " + mytotal.to_s + " let's see what the dealer has."
-	puts ""
-	puts "The dealer has " + dealtotal.to_s + "."
-	puts ""
-
-	if mytotal > dealtotal && mytotal <= 21
-		puts "You win :)"
-		puts ""
-	elsif mytotal == dealtotal
-		puts "It's a draw :|"
-		puts ""
 	else
-		puts "The dealer wins :("
+		puts "You can only enter 1 or 2. Ciao."
 		puts ""
 	end
-else
-	puts "You can only enter 1 or 2. Ciao."
-	puts ""
 end
 
-		
+if mytotal == 21
+	puts "Nice work, you've hit Blackjack!"
+	exit
+end
 
-		
+if mytotal > 21
+	puts "You bust :( Dealer wins."
+	exit
+end
