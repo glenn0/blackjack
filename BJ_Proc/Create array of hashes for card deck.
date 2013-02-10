@@ -1,0 +1,12 @@
+Create array of hashes for card deck.
+
+Create deal_card. Inserts to user, deletes from deck.
+
+Create array to store cards for player.
+
+Commence. Run random card selector twice.
+
+Get input of 'Hit' or 'Stay'.
+
+If 'Hit', run deal_card.
+
